@@ -1,14 +1,14 @@
 " =============================================================================
-" URL: https://github.com/sainnhe/edge/
-" Filename: autoload/lightline/colorscheme/edge.vim
+" URL: https://github.com/sainnhe/edge-fk-black/
+" Filename: autoload/lightline/colorscheme/edge-fk-black.vim
 " Author: Sainnhepark
 " Email: i@sainnhe.dev
 " License: MIT License
 " =============================================================================
 
 " Initialization: {{{
-let s:configuration = edge#get_configuration()
-let s:palette = edge#get_palette(s:configuration.style, s:configuration.dim_foreground, s:configuration.colors_override)
+let s:configuration = edge-fk-black#get_configuration()
+let s:palette = edge-fk-black#get_palette(s:configuration.style, s:configuration.dim_foreground, s:configuration.colors_override)
 if s:configuration.transparent_background == 2
   let s:palette.bg1 = s:palette.none
 endif
@@ -161,7 +161,7 @@ if s:configuration.lightline_disable_bold
   let s:p.tabline.tabsel = [ [ s:tab_sel_fg, s:tab_sel_bg ] ]
 endif
 
-let g:lightline#colorscheme#edge#palette = lightline#colorscheme#flatten(s:p)
+let g:lightline#colorscheme#edge-fk-black#palette = lightline#colorscheme#flatten(s:p)
 "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
