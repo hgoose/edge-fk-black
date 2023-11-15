@@ -1,13 +1,13 @@
 -- =============================================================================
--- URL: https://github.com/sainnhe/edge-fk-black
--- Filename: lua/lualine/themes/edge-fk-black.lua
+-- URL: https://github.com/sainnhe/edge_fk_black
+-- Filename: lua/lualine/themes/edge_fk_black.lua
 -- Author: sainnhe
 -- Email: i@sainnhe.dev
 -- License: MIT License
 -- =============================================================================
 
-local configuration = vim.fn['edge-fk-black#get_configuration']()
-local palette = vim.fn['edge-fk-black#get_palette'](configuration.style, configuration.dim_foreground, configuration.colors_override)
+local configuration = vim.fn['edge_fk_black#get_configuration']()
+local palette = vim.fn['edge_fk_black#get_palette'](configuration.style, configuration.dim_foreground, configuration.colors_override)
 
 if configuration.transparent_background == 2 then
   palette.bg1 = palette.none

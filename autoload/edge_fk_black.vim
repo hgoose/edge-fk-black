@@ -1,35 +1,35 @@
 " =============================================================================
-" URL: https://github.com/sainnhe/edge-fk-black
-" Filename: autoload/edge-fk-black.vim
+" URL: https://github.com/sainnhe/edge_fk_black
+" Filename: autoload/edge_fk_black.vim
 " Author: sainnhe
 " Email: i@sainnhe.dev
 " License: MIT License
 " =============================================================================
 
-function! edge-fk-black#get_configuration() "{{{
+function! edge_fk_black#get_configuration() "{{{
   return {
-        \ 'style': get(g:, 'edge-fk-black_style', 'default'),
-        \ 'dim_foreground': get(g:, 'edge-fk-black_dim_foreground', 0),
-        \ 'transparent_background': get(g:, 'edge-fk-black_transparent_background', 0),
-        \ 'enable_italic': get(g:, 'edge-fk-black_enable_italic', 0),
-        \ 'dim_inactive_windows': get(g:, 'edge-fk-black_dim_inactive_windows', 0),
-        \ 'disable_italic_comment': get(g:, 'edge-fk-black_disable_italic_comment', 0),
-        \ 'cursor': get(g:, 'edge-fk-black_cursor', 'auto'),
-        \ 'menu_selection_background': get(g:, 'edge-fk-black_menu_selection_background', 'blue'),
-        \ 'spell_foreground': get(g:, 'edge-fk-black_spell_foreground', 'none'),
-        \ 'show_eob': get(g:, 'edge-fk-black_show_eob', 1),
-        \ 'float_style': get(g:, 'edge-fk-black_float_style', 'bright'),
-        \ 'current_word': get(g:, 'edge-fk-black_current_word', get(g:, 'edge_transparent_background', 0) == 0 ? 'grey background' : 'bold'),
-        \ 'lightline_disable_bold': get(g:, 'edge-fk-black_lightline_disable_bold', 0),
-        \ 'diagnostic_text_highlight': get(g:, 'edge-fk-black_diagnostic_text_highlight', 0),
-        \ 'diagnostic_line_highlight': get(g:, 'edge-fk-black_diagnostic_line_highlight', 0),
-        \ 'diagnostic_virtual_text': get(g:, 'edge-fk-black_diagnostic_virtual_text', 'grey'),
-        \ 'disable_terminal_colors': get(g:, 'edge-fk-black_disable_terminal_colors', 0),
-        \ 'better_performance': get(g:, 'edge-fk-black_better_performance', 0),
-        \ 'colors_override': get(g:, 'edge-fk-black_colors_override', {}),
+        \ 'style': get(g:, 'edge_fk_black_style', 'default'),
+        \ 'dim_foreground': get(g:, 'edge_fk_black_dim_foreground', 0),
+        \ 'transparent_background': get(g:, 'edge_fk_black_transparent_background', 0),
+        \ 'enable_italic': get(g:, 'edge_fk_black_enable_italic', 0),
+        \ 'dim_inactive_windows': get(g:, 'edge_fk_black_dim_inactive_windows', 0),
+        \ 'disable_italic_comment': get(g:, 'edge_fk_black_disable_italic_comment', 0),
+        \ 'cursor': get(g:, 'edge_fk_black_cursor', 'auto'),
+        \ 'menu_selection_background': get(g:, 'edge_fk_black_menu_selection_background', 'blue'),
+        \ 'spell_foreground': get(g:, 'edge_fk_black_spell_foreground', 'none'),
+        \ 'show_eob': get(g:, 'edge_fk_black_show_eob', 1),
+        \ 'float_style': get(g:, 'edge_fk_black_float_style', 'bright'),
+        \ 'current_word': get(g:, 'edge_fk_black_current_word', get(g:, 'edge_transparent_background', 0) == 0 ? 'grey background' : 'bold'),
+        \ 'lightline_disable_bold': get(g:, 'edge_fk_black_lightline_disable_bold', 0),
+        \ 'diagnostic_text_highlight': get(g:, 'edge_fk_black_diagnostic_text_highlight', 0),
+        \ 'diagnostic_line_highlight': get(g:, 'edge_fk_black_diagnostic_line_highlight', 0),
+        \ 'diagnostic_virtual_text': get(g:, 'edge_fk_black_diagnostic_virtual_text', 'grey'),
+        \ 'disable_terminal_colors': get(g:, 'edge_fk_black_disable_terminal_colors', 0),
+        \ 'better_performance': get(g:, 'edge_fk_black_better_performance', 0),
+        \ 'colors_override': get(g:, 'edge_fk_black_colors_override', {}),
         \ }
 endfunction "}}}
-function! edge-fk-black#get_palette(style, dim_foreground, colors_override) "{{{
+function! edge_fk_black#get_palette(style, dim_foreground, colors_override) "{{{
   if &background ==# 'dark' "{{{
     if a:style ==# 'default' "{{{
       let palette = {
@@ -156,7 +156,7 @@ function! edge-fk-black#get_palette(style, dim_foreground, colors_override) "{{{
   endif
   return extend(palette, a:colors_override)
 endfunction "}}}
-function! edge-fk-black#highlight(group, fg, bg, ...) "{{{
+function! edge_fk_black#highlight(group, fg, bg, ...) "{{{
   execute 'highlight' a:group
         \ 'guifg=' . a:fg[0]
         \ 'guibg=' . a:bg[0]
@@ -172,54 +172,54 @@ function! edge-fk-black#highlight(group, fg, bg, ...) "{{{
           \ a:2[0] :
           \ 'NONE')
 endfunction "}}}
-function! edge-fk-black#syn_gen(path, last_modified, msg) "{{{
+function! edge_fk_black#syn_gen(path, last_modified, msg) "{{{
   " Generate the `after/syntax` directory.
-  let full_content = join(readfile(a:path), "\n") " Get the content of `colors/edge-fk-black.vim`
+  let full_content = join(readfile(a:path), "\n") " Get the content of `colors/edge_fk_black.vim`
   let syn_conent = []
-  let rootpath = edge-fk-black#syn_rootpath(a:path) " Get the path to place the `after/syntax` directory.
+  let rootpath = edge_fk_black#syn_rootpath(a:path) " Get the path to place the `after/syntax` directory.
   call substitute(full_content, '" syn_begin.\{-}syn_end', '\=add(syn_conent, submatch(0))', 'g') " Search for 'syn_begin.\{-}syn_end' (non-greedy) and put all the search results into a list.
   for content in syn_conent
     let syn_list = []
     call substitute(matchstr(matchstr(content, 'syn_begin:.\{-}{{{'), ':.\{-}{{{'), '\(\w\|-\)\+', '\=add(syn_list, submatch(0))', 'g') " Get the file types. }}}}}}
     for syn in syn_list
-      call edge-fk-black#syn_write(rootpath, syn, content) " Write the content.
+      call edge_fk_black#syn_write(rootpath, syn, content) " Write the content.
     endfor
   endfor
-  call edge-fk-black#syn_write(rootpath, 'text', "let g:edge_last_modified = '" . a:last_modified . "'") " Write the last modified time to `after/syntax/text/edge.vim`
+  call edge_fk_black#syn_write(rootpath, 'text', "let g:edge_last_modified = '" . a:last_modified . "'") " Write the last modified time to `after/syntax/text/edge.vim`
   let syntax_relative_path = has('win32') ? '\after\syntax' : '/after/syntax'
   if a:msg ==# 'update'
-    echohl WarningMsg | echom '[edge-fk-black] Updated ' . rootpath . syntax_relative_path | echohl None
-    call edge-fk-black#ftplugin_detect(a:path)
+    echohl WarningMsg | echom '[edge_fk_black] Updated ' . rootpath . syntax_relative_path | echohl None
+    call edge_fk_black#ftplugin_detect(a:path)
   else
-    echohl WarningMsg | echom '[edge-fk-black] Generated ' . rootpath . syntax_relative_path | echohl None
+    echohl WarningMsg | echom '[edge_fk_black] Generated ' . rootpath . syntax_relative_path | echohl None
     execute 'set runtimepath+=' . fnamemodify(rootpath, ':p') . 'after'
   endif
 endfunction "}}}
-function! edge-fk-black#syn_write(rootpath, syn, content) "{{{
+function! edge_fk_black#syn_write(rootpath, syn, content) "{{{
   " Write the content.
-  let syn_path = a:rootpath . '/after/syntax/' . a:syn . '/edge-fk-black.vim' " The path of a syntax file.
+  let syn_path = a:rootpath . '/after/syntax/' . a:syn . '/edge_fk_black.vim' " The path of a syntax file.
   " create a new file if it doesn't exist
   if !filereadable(syn_path)
     call mkdir(a:rootpath . '/after/syntax/' . a:syn, 'p')
     call writefile([
-          \ "if !exists('g:colors_name') || g:colors_name !=# 'edge-fk-black'",
+          \ "if !exists('g:colors_name') || g:colors_name !=# 'edge_fk_black'",
           \ '    finish',
           \ 'endif'
-          \ ], syn_path, 'a') " Abort if the current color scheme is not edge-fk-black.
+          \ ], syn_path, 'a') " Abort if the current color scheme is not edge_fk_black.
     call writefile([
-          \ "if index(g:edge-fk-black_loaded_file_types, '" . a:syn . "') ==# -1",
-          \ "    call add(g:edge-fk-black_loaded_file_types, '" . a:syn . "')",
+          \ "if index(g:edge_fk_black_loaded_file_types, '" . a:syn . "') ==# -1",
+          \ "    call add(g:edge_fk_black_loaded_file_types, '" . a:syn . "')",
           \ 'else',
           \ '    finish',
           \ 'endif'
           \ ], syn_path, 'a') " Abort if this file type has already been loaded.
   endif
-  " If there is something like `call edge-fk-black#highlight()`, then add
+  " If there is something like `call edge_fk_black#highlight()`, then add
   " code to initialize the palette and configuration.
-  if matchstr(a:content, 'edge-fk-black#highlight') !=# ''
+  if matchstr(a:content, 'edge_fk_black#highlight') !=# ''
     call writefile([
-          \ 'let s:configuration = edge-fk-black#get_configuration()',
-          \ 'let s:palette = edge-fk-black#get_palette(s:configuration.style, s:configuration.dim_foreground, s:configuration.colors_override)'
+          \ 'let s:configuration = edge_fk_black#get_configuration()',
+          \ 'let s:palette = edge_fk_black#get_palette(s:configuration.style, s:configuration.dim_foreground, s:configuration.colors_override)'
           \ ], syn_path, 'a')
   endif
   " Append the content.
@@ -227,7 +227,7 @@ function! edge-fk-black#syn_write(rootpath, syn, content) "{{{
   " Add modeline.
   call writefile(['" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:'], syn_path, 'a')
 endfunction "}}}
-function! edge-fk-black#syn_rootpath(path) "{{{
+function! edge_fk_black#syn_rootpath(path) "{{{
   " Get the directory where `after/syntax` is generated.
   if (matchstr(a:path, '^/usr/share') ==# '') " Return the plugin directory. The `after/syntax` directory should never be generated in `/usr/share`, even if you are a root user.
     return fnamemodify(a:path, ':p:h:h')
@@ -239,17 +239,17 @@ function! edge-fk-black#syn_rootpath(path) "{{{
     endif
   endif
 endfunction "}}}
-function! edge-fk-black#syn_newest(path, last_modified) "{{{
-  " Determine whether the current syntax files are up to date by comparing the last modified time in `colors/edge-fk-black.vim` and `after/syntax/text/edge.vim`.
-  let rootpath = edge-fk-black#syn_rootpath(a:path)
-  execute 'source ' . rootpath . '/after/syntax/text/edge-fk-black.vim'
-  return a:last_modified ==# g:edge-fk-black_last_modified ? 1 : 0
+function! edge_fk_black#syn_newest(path, last_modified) "{{{
+  " Determine whether the current syntax files are up to date by comparing the last modified time in `colors/edge_fk_black.vim` and `after/syntax/text/edge.vim`.
+  let rootpath = edge_fk_black#syn_rootpath(a:path)
+  execute 'source ' . rootpath . '/after/syntax/text/edge_fk_black.vim'
+  return a:last_modified ==# g:edge_fk_black_last_modified ? 1 : 0
 endfunction "}}}
-function! edge-fk-black#syn_clean(path, msg) "{{{
+function! edge_fk_black#syn_clean(path, msg) "{{{
   " Clean the `after/syntax` directory.
-  let rootpath = edge-fk-black#syn_rootpath(a:path)
-  " Remove `after/syntax/**/edge-fk-black.vim`.
-  let file_list = split(globpath(rootpath, 'after/syntax/**/edge-fk-black.vim'), "\n")
+  let rootpath = edge_fk_black#syn_rootpath(a:path)
+  " Remove `after/syntax/**/edge_fk_black.vim`.
+  let file_list = split(globpath(rootpath, 'after/syntax/**/edge_fk_black.vim'), "\n")
   for file in file_list
     call delete(file)
   endfor
@@ -268,20 +268,20 @@ function! edge-fk-black#syn_clean(path, msg) "{{{
   endif
   if a:msg
     let syntax_relative_path = has('win32') ? '\after\syntax' : '/after/syntax'
-    echohl WarningMsg | echom '[edge-fk-black] Cleaned ' . rootpath . syntax_relative_path | echohl None
+    echohl WarningMsg | echom '[edge_fk_black] Cleaned ' . rootpath . syntax_relative_path | echohl None
   endif
 endfunction "}}}
-function! edge-fk-black#syn_exists(path) "{{{
-  return filereadable(edge-fk-black#syn_rootpath(a:path) . '/after/syntax/text/edge.vim')
+function! edge_fk_black#syn_exists(path) "{{{
+  return filereadable(edge_fk_black#syn_rootpath(a:path) . '/after/syntax/text/edge.vim')
 endfunction "}}}
-function! edge-fk-black#ftplugin_detect(path) "{{{
+function! edge_fk_black#ftplugin_detect(path) "{{{
   " Check if /after/ftplugin exists.
   " This directory is generated in earlier versions, users may need to manually clean it.
-  let rootpath = edge-fk-black#syn_rootpath(a:path)
-  if filereadable(edge-fk-black#syn_rootpath(a:path) . '/after/ftplugin/text/edge.vim')
+  let rootpath = edge_fk_black#syn_rootpath(a:path)
+  if filereadable(edge_fk_black#syn_rootpath(a:path) . '/after/ftplugin/text/edge.vim')
     let ftplugin_relative_path = has('win32') ? '\after\ftplugin' : '/after/ftplugin'
-    echohl WarningMsg | echom '[edge-fk-black] Detected ' . rootpath . ftplugin_relative_path | echohl None
-    echohl WarningMsg | echom '[edge-fk-black] This directory is no longer used, you may need to manually delete it.' | echohl None
+    echohl WarningMsg | echom '[edge_fk_black] Detected ' . rootpath . ftplugin_relative_path | echohl None
+    echohl WarningMsg | echom '[edge_fk_black] This directory is no longer used, you may need to manually delete it.' | echohl None
   endif
 endfunction "}}}
 
