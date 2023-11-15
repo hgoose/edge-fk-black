@@ -35,7 +35,7 @@ function! edge#get_palette(style, dim_foreground, colors_override) "{{{
       let palette = {
             \ 'black':      ['#202023',   '232'],
             \ 'bg_dim':     ['#24262a',   '232'],
-            \ 'bg0':        ['#2c2e34',   '235'],
+            \ 'bg0':        ['#000000',   '235'],
             \ 'bg1':        ['#33353f',   '236'],
             \ 'bg2':        ['#363944',   '237'],
             \ 'bg3':        ['#3b3e48',   '237'],
